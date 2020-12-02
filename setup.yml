@@ -1,9 +1,9 @@
 AWSTemplateFormatVersion: 2010-09-09
 
 Parameters:
-  CodePipelineS3Bucket:
-  Type: String
-  Description: 'The S3 bucket for CodePipeline artifacts'
+  CodePipelineBucket:
+    Type: String
+    Description: 'The S3 bucket for CodePipeline artifacts'
   
   
 Resources:
@@ -17,7 +17,7 @@ Resources:
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
-    BucketEncryption:
-      ServerSideEncryptionConfiguration:
-        - ServerSideEncryptionByDefault:
-            SSEAlgorithm: AES256
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
