@@ -205,6 +205,7 @@ Resources:
               wget: []
               unzip: []
               ruby: []
+              jq: []
           files:
             /home/ec2-user/install:
               source: !Sub "https://aws-codedeploy-${AWS::Region}.s3.amazonaws.com/latest/install"
@@ -218,6 +219,7 @@ Resources:
       InstanceType: !Ref EC2InstanceType
       IamInstanceProfile: !Ref InstanceProfile
       Monitoring: true
+      KeyName: justinthebastion
       SecurityGroupIds:
         - !GetAtt SecurityGroup.GroupId
       UserData:
@@ -252,6 +254,7 @@ Resources:
 
 
           # Create log directory
+          mkdir -p /home/ec2-user/app/logs
           EOF
 
 
