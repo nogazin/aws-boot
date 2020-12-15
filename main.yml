@@ -268,9 +268,6 @@ Resources:
 
             # Get latest cfn scripts; https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html#cfninit
             yum install -y aws-cfn-bootstrap
-
-            # Have  Cloudformation install any files and packages from the metadata
-            /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --region ${AWS::Region} --resource Instance
             
             cat > /tmp/install_script.sh << EOF
             # START
@@ -285,7 +282,6 @@ Resources:
             nvm alias default v12.7.0
             nvm install v12.7.0
             nvm use v12.7.0
-
 
             # Create log directory
             mkdir -p /home/ec2-user/app/logs
@@ -302,9 +298,9 @@ Resources:
             export INSTANCE_ID=`curl -s http://169.254.169.254/latest/meta-data/instance-id`
 
             # Query the EC2 describeTags method and pull out the CFN Logival ID for this instance
-            export LOGICAL_ID`aws --region ${AWS::Region} ec2 describe-tags \
+            export LOGICAL_ID=`aws --region ${AWS::Region} ec2 describe-tags \
             --filters "Name=resource-id,Values=${!INSTANCE_ID}" \
-            "Name=key,Values=aws:cloudformations:logical-id" \
+            "Name=key,Values=aws:cloudformation:logical-id" \
             | jq -r ".Tags[0].Value"`
             # Signal to CloudFormation that the instance is ready
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --region ${AWS::Region} --resource ${!LOGICAL_ID}
