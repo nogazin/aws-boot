@@ -1,5 +1,6 @@
 #!/bin/bash
 
+DOMAIN=justinthecloud.co.uk
 STACK_NAME=awsbootstrap
 REGION=us-east-1
 CLI_PROFILE=awsbootstrap
@@ -55,6 +56,7 @@ aws cloudformation deploy \
     --no-fail-on-empty-changeset \
     --capabilities CAPABILITY_NAMED_IAM \
     --parameter-overrides \
+    Domain=$DOMAIN \
     EC2InstanceType=$EC2_INSTANCE_TYPE \
     GitHubOwner=$GH_OWNER \
     GitHubBranch=$GH_BRANCH \
