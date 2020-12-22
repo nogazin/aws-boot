@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOMAIN=justinthecloud.co.uk
-STACK_NAME=awsbootstrap123
+STACK_NAME=awsbootstrap100
 REGION=us-east-1
 CLI_PROFILE=awsbootstrap
 

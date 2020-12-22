@@ -253,9 +253,9 @@ Resources:
       AvailabilityZones:
         - !Select [ 0, !GetAZs '' ]
         - !Select [ 1, !GetAZs '' ]
-      MaxSize: "2"
-      MinSize: "2"
-      HealthCheckGracePeriod: 0
+      MaxSize: "1"
+      MinSize: "1"
+      HealthCheckGracePeriod: 900
       HealthCheckType: ELB
       LaunchTemplate:
         Version: !GetAtt InstanceLaunchTemplate.LatestVersionNumber
