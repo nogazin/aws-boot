@@ -255,7 +255,7 @@ Resources:
         - !Select [ 1, !GetAZs '' ]
       MaxSize: "1"
       MinSize: "1"
-      HealthCheckGracePeriod: 900
+      HealthCheckGracePeriod: 7200
       HealthCheckType: ELB
       LaunchTemplate:
         Version: !GetAtt InstanceLaunchTemplate.LatestVersionNumber
